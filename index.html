@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Om ❤️ Sayali Forever</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ffafbd, #ffc3a0);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff85a2; }
+      to { text-shadow: 0 0 25px #ffb3c6; }
+    }
+
+    .quote {
+      font-size: 1.2rem;
+      max-width: 90%;
+      margin: 20px auto;
+    }
+
+    .typewriter {
+      border-right: 2px solid white;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 6s steps(100, end), blink .7s step-end infinite;
+      font-size: 1rem;
+      margin: 30px auto;
+      max-width: 90%;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatHearts 10s infinite;
+      opacity: 0.7;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+
+    @keyframes floatHearts {
+      0% { transform: translateY(0) rotate(0); opacity: 1; }
+      100% { transform: translateY(-1000px) rotate(360deg); opacity: 0; }
+    }
+
+    .photo {
+      width: 150px;
+      height: 150px;
+      margin: 30px auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #fff;
+      box-shadow: 0 0 15px 5px #ff85a2;
+      animation: pulse 3s infinite;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px #ff85a2; }
+      100% { box-shadow: 0 0 25px #ff4e8b; }
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      color: #333;
+      padding: 20px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 30px rgba(255,0,100,0.5);
+      z-index: 999;
+      text-align: left;
+      font-size: 1rem;
+    }
+
+    .btn {
+      margin-top: 30px;
+      padding: 14px 28px;
+      background: #fff;
+      color: #ff4e8b;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #ff4e8b;
+      color: #fff;
+    }
+
+    audio {
+      display: none;
+    }
+
+    .trail-heart {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: red;
+      transform: rotate(45deg);
+      pointer-events: none;
+      border-radius: 0 50% 50% 50%;
+      animation: trailFade 1s ease-out forwards;
+    }
+
+    @keyframes trailFade {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(2); }
+    }
+
+    .spark-heart {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: pink;
+      transform: rotate(45deg);
+      border-radius: 0 50% 50% 50%;
+      pointer-events: none;
+      animation: sparkleMove 1s ease-out;
+    }
+
+    @keyframes sparkleMove {
+      from {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: translate(calc(30px * cos(var(--i))), calc(-30px * sin(var(--i)))) scale(2);
+      }
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 2.3rem;
+      }
+      .typewriter {
+        font-size: 0.95rem;
+      }
+      .quote {
+        font-size: 1rem;
+      }
+      .btn {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Om ❤️ Sayali</h1>
+
+    <div class="photo">
+  <img id="photoDisplay" src="assets/images/image1.jpeg" alt="Om and Sayali">
+</div>
+
+
+    <div class="quote" id="quote">"You're the reason my heart beats."</div>
+
+    <div class="typewriter" id="message"></div>
+
+    <button class="btn" onclick="showPopup()">Click Me Sayali ❤️</button>
+
+    <div class="popup" id="popup">
+      <h2>My Dearest Sayali 💌</h2>
+    <p>
+  You're not just someone I love — you're the missing piece of my soul. <br><br>
+  Sayali, I know the future can feel uncertain, but please know — I'm here, always. We'll face every challenge together, hand in hand. <br><br>
+  Our love is real, strong, and meant to last. I believe with all my heart that one day, we'll build a life together — beautifully and completely. <br><br>
+  So don't be afraid. Trust in us. <br><br>
+  I promise to love, respect, and stand by you through every season. <br><br>
+  Yours always,<br>
+  <b>Om ❤️</b>
+</p>
+
+
+    </div>
+  </div>
+
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 3 + 7 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 300);
+
+    const quotes = [
+      "You're the reason my heart beats.",
+      "Every moment with you is a dream come true.",
+      "Om + Sayali = Forever ❤️",
+      "I want to grow old with you, Sayali.",
+      "Loving you is the best decision I ever made."
+    ];
+    let i = 0;
+    setInterval(() => {
+      document.getElementById("quote").textContent = quotes[i];
+      i = (i + 1) % quotes.length;
+    }, 6000);
+
+    const message = "Sayali, you're my everything. My peace, my heart, my home. I love you more than words, more than stars, more than forever.";
+    let j = 0;
+    function typeWriter() {
+      if (j < message.length) {
+        document.getElementById("message").textContent += message.charAt(j);
+        j++;
+        setTimeout(typeWriter, 50);
+      }
+    }
+    window.onload = typeWriter;
+
+    function showPopup() {
+      document.getElementById("popup").style.display = "block";
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      const heart = document.createElement('div');
+      heart.className = 'trail-heart';
+      heart.style.left = `${e.clientX}px`;
+      heart.style.top = `${e.clientY}px`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1000);
+    });
+
+    document.addEventListener('click', (e) => {
+      for (let i = 0; i < 15; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'spark-heart';
+        sparkle.style.left = `${e.clientX}px`;
+        sparkle.style.top = `${e.clientY}px`;
+        sparkle.style.setProperty('--i', i);
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 1000);
+      }
+    });
+
+
+const totalImages = 13;
+let currentImage = 1;
+
+function changeImage() {
+  currentImage++;
+  if (currentImage > totalImages) currentImage = 1;
+
+  document.getElementById('photoDisplay').src = `assets/images/image${currentImage}.jpeg`;
+}
+
+// Change image every 4 seconds
+setInterval(changeImage, 4000);
+
+
+  </script>
+
+</body>
+</html>
