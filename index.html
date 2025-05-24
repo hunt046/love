@@ -208,9 +208,8 @@
     <h1>Om ❤️ Sayali</h1>
 
     <div class="photo">
-  <img id="photoDisplay" src="assets/images/image1.jpeg" alt="Om and Sayali">
-</div>
-
+      <img id="photoDisplay" src="assets/images/image1.jpeg" alt="Om and Sayali">
+    </div>
 
     <div class="quote" id="quote">"You're the reason my heart beats."</div>
 
@@ -219,21 +218,35 @@
     <button class="btn" onclick="showPopup()">Click Me Sayali ❤️</button>
 
     <div class="popup" id="popup">
-      <h2>My Dearest Sayali 💌</h2>
-    <p>
-  You're not just someone I love — you're the missing piece of my soul. <br><br>
-  Sayali, I know the future can feel uncertain, but please know — I'm here, always. We'll face every challenge together, hand in hand. <br><br>
-  Our love is real, strong, and meant to last. I believe with all my heart that one day, we'll build a life together — beautifully and completely. <br><br>
-  So don't be afraid. Trust in us. <br><br>
-  I promise to love, respect, and stand by you through every season. <br><br>
-  Yours always,<br>
-  <b>Om ❤️</b>
-</p>
-
-
+      <div id="slide1">
+        <h2>My Dearest Sayali 💌</h2>
+        <p>
+          You're not just someone I love — you're the missing piece of my soul. <br><br>
+          Sayali, I know the future can feel uncertain, but please know — I'm here, always. We'll face every challenge together, hand in hand. <br><br>
+          Our love is real, strong, and meant to last. I believe with all my heart that one day, we'll build a life together — beautifully and completely. <br><br>
+          So don't be afraid. Trust in us. <br><br>
+          I promise to love, respect, and stand by you through every season. <br><br>
+          Yours always,<br>
+          <b>Om ❤️</b>
+        </p>
+        <button class="btn" onclick="showSlide2()">Read My Heart ❤️</button>
+      </div>
+      <div id="slide2" style="display:none;">
+        <h2>My Heartfelt Message ❤️</h2>
+        <p>
+          Sayali...<br><br>
+          Sometimes I get a little annoying with small mistakes or moments I don’t realize.<br><br>
+          But my love for you is true and endless — it’s all I ever want.<br><br>
+          I want us to keep growing together, through every little thing life brings.<br><br>
+          You’re my world, and without you, nothing feels complete.<br><br>
+          Just stay by my side, and I promise to always hold you close.<br><br>
+          Always yours,<br>
+          <b>Om ❤️</b>
+        </p>
+        <button class="btn" onclick="showSlide1()">Back to Love Letter 💌</button>
+      </div>
     </div>
   </div>
-
 
   <script>
     function createHeart() {
@@ -272,6 +285,18 @@
 
     function showPopup() {
       document.getElementById("popup").style.display = "block";
+      // Always start with slide1 when popup opens
+      showSlide1();
+    }
+
+    function showSlide1() {
+      document.getElementById("slide1").style.display = "block";
+      document.getElementById("slide2").style.display = "none";
+    }
+
+    function showSlide2() {
+      document.getElementById("slide1").style.display = "none";
+      document.getElementById("slide2").style.display = "block";
     }
 
     document.addEventListener('mousemove', (e) => {
@@ -295,21 +320,18 @@
       }
     });
 
+    const totalImages = 13;
+    let currentImage = 1;
 
-const totalImages = 13;
-let currentImage = 1;
+    function changeImage() {
+      currentImage++;
+      if (currentImage > totalImages) currentImage = 1;
 
-function changeImage() {
-  currentImage++;
-  if (currentImage > totalImages) currentImage = 1;
+      document.getElementById('photoDisplay').src = `assets/images/image${currentImage}.jpeg`;
+    }
 
-  document.getElementById('photoDisplay').src = `assets/images/image${currentImage}.jpeg`;
-}
-
-// Change image every 4 seconds
-setInterval(changeImage, 4000);
-
-
+    // Change image every 4 seconds
+    setInterval(changeImage, 4000);
   </script>
 
 </body>
