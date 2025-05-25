@@ -143,9 +143,7 @@
       color: #fff;
     }
 
-    audio {
-      display: none;
-    }
+    audio { display: none; }
 
     .trail-heart {
       position: fixed;
@@ -231,8 +229,9 @@
         </p>
         <button class="btn" onclick="showSlide2()">Read My Heart ❤️</button>
       </div>
+
       <div id="slide2" style="display:none;">
-        <h2>My Heartfelt Message ❤️</h2>
+        <h2>My Heartfelt Confession ❤️</h2>
         <p>
           Sayali...<br><br>
           Sometimes I get a little annoying with small mistakes or moments I don’t realize.<br><br>
@@ -243,7 +242,24 @@
           Always yours,<br>
           <b>Om ❤️</b>
         </p>
-        <button class="btn" onclick="showSlide1()">Back to Love Letter 💌</button>
+        <button class="btn" onclick="showSlide1()">Back</button>
+        <button class="btn" onclick="showSlide3()">Next</button>
+      </div>
+
+      <div id="slide3" style="display:none;">
+        <h2>Just One Wish... ✨</h2>
+        <p>
+          Sayali...<br><br>
+          If I could make just one wish right now, it would be this:<br><br>
+          I wish to wake up every day knowing you're mine,<br>
+          to hold your hand through every high and low,<br>
+          to see that pretty smile when life feels heavy,<br><br>
+          I don’t need a perfect life — I just need <strong>you</strong> in it.<br><br>
+          Let's write our own story... one filled with love, laughter, and all the crazy little moments that make us <em>us</em>.<br><br>
+          Forever yours,<br>
+          <b>Om ❤️</b>
+        </p>
+        <button class="btn" onclick="showSlide2()">Back</button>
       </div>
     </div>
   </div>
@@ -285,18 +301,24 @@
 
     function showPopup() {
       document.getElementById("popup").style.display = "block";
-      // Always start with slide1 when popup opens
       showSlide1();
     }
 
     function showSlide1() {
       document.getElementById("slide1").style.display = "block";
       document.getElementById("slide2").style.display = "none";
+      document.getElementById("slide3").style.display = "none";
     }
 
     function showSlide2() {
       document.getElementById("slide1").style.display = "none";
       document.getElementById("slide2").style.display = "block";
+      document.getElementById("slide3").style.display = "none";
+    }
+
+    function showSlide3() {
+      document.getElementById("slide2").style.display = "none";
+      document.getElementById("slide3").style.display = "block";
     }
 
     document.addEventListener('mousemove', (e) => {
@@ -326,13 +348,10 @@
     function changeImage() {
       currentImage++;
       if (currentImage > totalImages) currentImage = 1;
-
       document.getElementById('photoDisplay').src = `assets/images/image${currentImage}.jpeg`;
     }
 
-    // Change image every 4 seconds
     setInterval(changeImage, 4000);
   </script>
-
 </body>
 </html>
